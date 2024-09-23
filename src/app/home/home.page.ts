@@ -21,7 +21,7 @@ export class HomePage {
 
   constructor(private alertController: AlertController) {
     this.num = 0;
-    this.MAX = 9999;
+    this.MAX = 100;
     this.MIN = 0;
     this.showNumber = '00';
     this.keyNumber = 'keyNumber';
