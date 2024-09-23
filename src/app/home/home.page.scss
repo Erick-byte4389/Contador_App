@@ -2,6 +2,26 @@
   --overflow: hidden;
 }
 
+.center-content {
+  font-size: 10rem;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (orientation: portrait) {
+  .center-content {
+    font-size: 14rem;
+  }
+}
+
+@media (orientation: landscape) {
+  .center-content {
+    font-size: 16rem;
+  }
+}
+
 #container {
   text-align: center;
 
