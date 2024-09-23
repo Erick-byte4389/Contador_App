@@ -13,14 +13,16 @@ import { Preferences } from '@capacitor/preferences';
 })
 export class HomePage {
 
-  public n: number;
+  public num: number;
   public showNumber: String;
   private keyNumber: string;
-  private readonly MIN: number = 0;
-  private readonly MAX: number = 100; // Adjust the max value as needed
+  public MAX: number;
+  public MIN: number;
 
   constructor(private alertController: AlertController) {
-    this.n = 0;
+    this.num = 0;
+    this.MAX = 9999;
+    this.MIN = 0;
     this.showNumber = '00';
     this.keyNumber = 'keyNumber';
   }
@@ -32,32 +34,32 @@ export class HomePage {
     if(counter.value) {
       const num = +counter.value;
       if (isNaN(num) || num < this.MIN || num > this.MAX) {
-        this.n = this.MIN;
+        this.num = this.MIN;
         this.saveNum();
       } else {
-        this.n = num;
+        this.num = num;
       }
     }
     
   }
 
   up() {
-    this.n++;
+    this.num++;
     this.formatShowNumber();
     this.saveNum();
   }
 
   down() {
-    this.n--;
+    this.num--;
     this.formatShowNumber();
     this.saveNum();
   }
 
   formatShowNumber() {
-    if (this.n < 10) {
-      this.showNumber = '0' + this.n; 
+    if (this.num < 10) {
+      this.showNumber = '0' + this.num; 
     } else {
-      this.showNumber = this.n + '';
+      this.showNumber = this.num + '';
     }
   }
 
@@ -70,7 +72,7 @@ export class HomePage {
         {
           text: 'Si',
           handler: () => {
-            this.n = 0;
+            this.num = 0;
             this.formatShowNumber();
             this.saveNum();
           }
@@ -87,7 +89,7 @@ export class HomePage {
   }
 
   private saveNum() {
-    Preferences.set({ key: this.keyNumber, value: this.n.toString() });
+    Preferences.set({ key: this.keyNumber, value: this.num.toString() });
   }
 
 }
